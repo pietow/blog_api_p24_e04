@@ -4,7 +4,7 @@ from .permissions import IsAuthorOrReadOnly
 from .serializers import PostSerializer
 
 class PostList(generics.ListCreateAPIView):
-    permission_classes = (IsAuthorOrReadOnly,)
+    # permission_classes = (IsAuthorOrReadOnly,)
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
@@ -17,7 +17,7 @@ class PostList(generics.ListCreateAPIView):
         serializer.save(author=self.request.user)
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthorOrReadOnly,)
+    # permission_classes = (IsAuthorOrReadOnly,)
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 

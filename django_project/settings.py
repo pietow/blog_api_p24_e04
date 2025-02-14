@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
+    "dj_rest_auth",
     'accounts',
     'posts',
 ]
@@ -130,8 +132,12 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         # "rest_framework.permissions.AllowAny", 
-        "rest_framework.permissions.IsAuthenticated", 
-        # "rest_framework.permissions.IsAdminUser", 
+        # "rest_framework.permissions.IsAuthenticated", 
+        "rest_framework.permissions.IsAdminUser", 
         # "rest_framework.permissions.IsAuthenticatedOrReadOnly", 
-    ]
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication", 
+        "rest_framework.authentication.TokenAuthentication", 
+    ],
 }
