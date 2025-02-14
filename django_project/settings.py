@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken', # gives us Model for the Token
+    'dj_rest_auth', # gives us Endpoints for login/logout
     'accounts',
     'posts',
 ]
@@ -133,5 +135,9 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticated", 
         # "rest_framework.permissions.IsAdminUser", 
         # "rest_framework.permissions.IsAuthenticatedOrReadOnly", 
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ]
 }
