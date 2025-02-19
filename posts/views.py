@@ -6,8 +6,16 @@ from .serializers import PostSerializer, UserSerializer
 
 class PostViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthorOrReadOnly,)
-    queryset = Post.objects.all()
     serializer_class = PostSerializer
+    queryset = Post.objects.all()
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Post.objects.all()
+        return Post.objects.filter(author=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAdminUser]
