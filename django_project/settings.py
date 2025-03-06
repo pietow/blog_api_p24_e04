@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-t7w1=9_y9cwn$&(r35sii^i3fp=#z)_7j7r1649$7p6_had4fv
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+CORS_ALLOW_ALL_ORIGINS = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,11 +41,13 @@ INSTALLED_APPS = [
     'dj_rest_auth', # gives us Endpoints for login/logout
     'accounts',
     'posts',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -131,8 +132,8 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        # "rest_framework.permissions.AllowAny", 
-        "rest_framework.permissions.IsAuthenticated", 
+        "rest_framework.permissions.AllowAny", 
+        # "rest_framework.permissions.IsAuthenticated", 
         # "rest_framework.permissions.IsAdminUser", 
         # "rest_framework.permissions.IsAuthenticatedOrReadOnly", 
     ],
