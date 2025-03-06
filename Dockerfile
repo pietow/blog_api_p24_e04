@@ -5,11 +5,7 @@ FROM python:3.9-slim
 WORKDIR /usr/src/app  
 
 # Systemabhängigkeiten installieren
-RUN apt-get update && apt-get install -y \
-    python3-dev \
-    build-essential \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update 
 
 # Copy the requirements file into the working directory
 COPY requirements.txt .  
