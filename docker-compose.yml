@@ -7,11 +7,11 @@ services:
               gunicorn --workers 3 --bind 0.0.0.0:8000 django_project.wsgi:application"
     volumes:
       - .:/usr/src/app
-      - static_volume:/usr/src/app/staticfiles
+      - static_volume_live:/usr/src/app/staticfiles
     ports:
       - "8000:8000"
     networks:
-      - app-network
+      - app-network_live
 
   nginx:
     image: nginx:latest
@@ -19,16 +19,16 @@ services:
       - "80:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - static_volume:/usr/src/app/staticfiles
+      - static_volume_live:/usr/src/app/staticfiles
     depends_on:
       - web
     networks:
-      - app-network
+      - app-network_live
 
 volumes:
-  static_volume:
+  static_volume_live:
 
 networks:
-  app-network:
-    name: app-network
+  app-network_live:
+    name: app-network_live
     driver: bridge
