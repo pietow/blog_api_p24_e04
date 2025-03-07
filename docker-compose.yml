@@ -1,0 +1,33 @@
+services:
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py migrate &&
+             gunicorn --workers 3 --bind 0.0.0.0:8000 django_project.wsgi:application"
+    volumes:
+      - .:/usr/src/app
+      - static_volume_live:/usr/src/app/staticfiles
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network_live
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - static_volume_live:/usr/src/app/staticfiles
+    depends_on:
+      - web
+    networks:
+      - app-network_live
+
+volumes:
+  static_volume_live:
+
+networks:
+  app-network_live:
+    name: app-network_live
+    driver: bridge
