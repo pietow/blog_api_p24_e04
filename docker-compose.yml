@@ -9,6 +9,8 @@ services:
       - static_volume_live:/usr/src/app/staticfiles
     ports:
       - "8000:8000"
+    depends_on:
+      - postgres
     networks:
       - app-network_live
 
@@ -24,8 +26,19 @@ services:
     networks:
       - app-network_live
 
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network_live
+
 volumes:
   static_volume_live:
+  postgres_data:
 
 networks:
   app-network_live:

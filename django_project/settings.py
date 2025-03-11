@@ -86,6 +86,19 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',  # Default DB name in the official image
+        'USER': 'postgres',  # Default user
+        'PASSWORD': 'password',  # Default password
+        'HOST': 'postgres',  # Service name in docker-compose
+        'PORT': '5432',  # Default PostgreSQL port
+    }
+}
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
