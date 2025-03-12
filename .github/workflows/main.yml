@@ -17,11 +17,7 @@ jobs:
           POSTGRES_DB: myproject
         ports:
           - 5432:5432
-        options: >-
-          --health-cmd="pg_isready -U myprojectuser2"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
+
 
     steps:
       # Step 1: Checkout Code
