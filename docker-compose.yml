@@ -7,8 +7,8 @@ services:
     volumes:
       - .:/usr/src/app
       - static_volume_live:/usr/src/app/staticfiles
-    ports:
-      - "8000:8000"
+    # ports:
+    #   - "8000:8000"
     networks:
       - app-network_live
 
